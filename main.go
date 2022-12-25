@@ -8,6 +8,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -18,7 +19,8 @@ func main() {
     
 	
     http.HandleFunc("/", handleRoot)
-    http.ListenAndServe(":8080", nil)
+	port := os.Getenv("PORT")
+    http.ListenAndServe(":"+port, nil)
 }
 
 // Match represents a football match
